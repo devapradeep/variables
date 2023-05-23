@@ -15,7 +15,7 @@ jobs:
     runs-on: "windows-latest"
     
     outputs:
-      app_namexx: ${{ steps.run-script.outputs[$key_name] }}  
+      app_namexx: ${{ steps.run-script.outputs[key_name] }}  
 
     steps:        
       - name: Checkout  repository
