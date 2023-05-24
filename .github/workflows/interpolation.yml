@@ -16,7 +16,7 @@ jobs:
       - name: Set interpolated secret name
         id: interpolate_secret
         run: |
-          echo "FINALUSER=svd-BUILD${{ env.FINALENV }}" >> $GITHUB_ENV
+          echo "FINALUSER=svd_BUILD${{ env.FINALENV }}" >> $GITHUB_ENV
       
       - name: Print Secret name
         run: |
