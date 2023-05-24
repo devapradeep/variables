@@ -14,6 +14,11 @@ jobs:
         run: |
           echo "var1=good" >> $GITHUB_OUTPUT
         id: gizo  
+        
+      - name: Access Variable one
+        run: |
+          echo "$var1"
+        
 
   mainjob2:
     needs: mainjob1
@@ -21,6 +26,6 @@ jobs:
 
     steps:
 
-      - name: Access Variable
+      - name: Access Variable two
         run: |
           echo "var1=${{ needs.mainjob1.gizo.outputs.var1 }}"
