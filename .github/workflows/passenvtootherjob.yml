@@ -1,0 +1,35 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mainjob1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Variable
+        run: |
+          echo "var1=good" >> $GITHUB_ENV
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: variable-artifacts
+          path: $GITHUB_ENV
+
+  mainjob2:
+    needs: mainjob1
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: variable-artifacts
+
+      - name: Access Variable
+        run: |
+          echo "var1=${{ env.var1 }}"
