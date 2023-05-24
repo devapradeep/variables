@@ -6,6 +6,20 @@ on:
       - main
 
 jobs:
+
+  mainjob0:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Variable
+        run: |
+          echo "var1=good" >> $GITHUB_OUTPUT
+        id: gizo  
+        
+      - name: Access Variable one
+        run: |
+          echo "${{ steps.gizo.outputs.var1 }}"
+          
   mainjob1:
     runs-on: ubuntu-latest
 
@@ -21,7 +35,9 @@ jobs:
         
 
   mainjob2:
-    needs: mainjob1
+    needs: 
+      - mainjob1
+      - mainjob0      
     runs-on: ubuntu-latest
 
     steps:
