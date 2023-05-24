@@ -15,7 +15,12 @@ jobs:
 
       - name: Set interpolated secret name
         id: interpolate_secret
-        run: echo "::set-output name=secret_name::svd-BUILD$FINALENV"
+        run: |
+          echo "FINALUSER=svd-BUILD${{ env.FINALENV }}" >> $GITHUB_ENV
+      
+      - name: Print Secret name
+        run: |
+         echo "USER IS: ${{ env.FINALUSER }}"
 
       - name: Echo interpolated value
-        run: echo "${{ secrets[steps.interpolate_secret.outputs.secret_name] }}"
+        run: echo "${{ secrets[ env.FINALUSER ] }}"
