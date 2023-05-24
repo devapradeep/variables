@@ -14,4 +14,4 @@ jobs:
         run: echo "FINALENV=Prod" >> $GITHUB_ENV
 
       - name: Echo interpolated value
-        run: echo "${{ secrets.svd-BUILD${{ env.FINALENV }} }}"
+        run: echo "${{ secrets['svd-BUILD' + env.FINALENV] }}"
