@@ -13,5 +13,9 @@ jobs:
       - name: Set environment variable
         run: echo "FINALENV=Prod" >> $GITHUB_ENV
 
+      - name: Set interpolated secret name
+        id: interpolate_secret
+        run: echo "::set-output name=secret_name::svd-BUILD$FINALENV"
+
       - name: Echo interpolated value
-        run: echo "${{ secrets['svd-BUILD' + env.FINALENV] }}"
+        run: echo "${{ secrets[steps.interpolate_secret.outputs.secret_name] }}"
