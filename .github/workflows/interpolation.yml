@@ -27,7 +27,7 @@ jobs:
         
       - name: Check if file exists
         run: |
-          if exist "%FILE_PATH%" (
+          if exist "C:\Path\file.txt" (
           echo File exists!
           ) else (
           echo File does not exist!
