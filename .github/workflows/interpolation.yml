@@ -27,7 +27,7 @@ jobs:
         
       - name: Check if file exists
         run: |
-          if exist "${{ env.FILE_PATH }}" (
+          if exist "${{ env.FILE_PATH }}"(
           echo File exists!
           ) else (
           echo File does not exist!
