@@ -7,10 +7,10 @@ env:
   APPURL: "https://mybank/$APPNAME/widgets/hello.json" 
 
 jobs:
-  test:
+  workflowlevelvars:
     runs-on: windows-latest
 
     steps:
       - name: Print variables
         run: |
-          echo "APPURL is: ${{ env.APPURL }}"
+          echo "APPURL is: $APPURL"
