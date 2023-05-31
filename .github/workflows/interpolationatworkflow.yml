@@ -1,16 +1,35 @@
-name: Example
-
-on: [push, workflow_dispatch]
+name: CICD-DEPLOYUTIL_develop
 
 env:
-  APPNAME: 'myapp1'
-  APPURL: "https://mybank/%APPNAME%/widgets/hello.json" 
+  nugetFeedName: 'mm365'
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+  workflow_dispatch:
+    inputs:
+      ENVIRONMENT:
+        type: choice
+        options:
+          - dev
+          - e2e
+          - qa
+          - citest
+          - cso
+          - prod
 
 jobs:
-  workflowlevelvars:
-    runs-on: windows-latest
-
+  RESTORE_NUGGET_PACKAGES:
+    runs-on: 'windows-latest'
+    env:
+      finalnugetFeedUrl: "http://tfs.mybank.com:8080/tfs/Default/_packaging/${{ env.nugetFeedName }}/nuget/v3/index.json"
     steps:
-      - name: Print variables
+      - name: Checkuot ${{ github.event.repository.name }} Repo
+        uses: actions/checkout@v3
+      - name: Restore NUGET on RUNNER host
         run: |
-          echo "APPURL is: ${{ env.APPURL }}"
+          Write-host nuget sources add -Name "${{ env.nugetFeedName }}" -ConfigFile nuget.config -Source "${{ env.finalnugetFeedUrl }}"
