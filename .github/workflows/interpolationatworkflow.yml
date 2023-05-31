@@ -1,0 +1,15 @@
+name: Example
+
+on: [push, workflow_dispatch]
+
+env:
+  APPNAME: 'myapp1'
+  APPURL: "https://mybank/$APPNAME/widgets/hello.json" 
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Print variables
+        echo "APPURL is: ${{ env.APPURL }}"
