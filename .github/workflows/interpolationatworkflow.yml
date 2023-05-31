@@ -4,7 +4,7 @@ on: [push, workflow_dispatch]
 
 env:
   APPNAME: 'myapp1'
-  APPURL: "https://mybank/$APPNAME/widgets/hello.json" 
+  APPURL: "https://mybank/%APPNAME%/widgets/hello.json" 
 
 jobs:
   workflowlevelvars:
@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: Print variables
         run: |
-          echo "APPURL is: $APPURL"
+          echo "APPURL is: ${{ env.APPURL }}"
