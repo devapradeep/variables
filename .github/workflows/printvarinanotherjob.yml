@@ -59,7 +59,7 @@ jobs:
   SETVARS2:
     runs-on: ubuntu-22.04
     steps:
-      - name: Get present date
+      - name: Get present  date
         id: get-date
         run: |
           date=$(date +"%d%b%Y")
