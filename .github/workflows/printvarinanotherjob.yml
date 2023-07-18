@@ -18,7 +18,8 @@ jobs:
         run: |
           date=$(date +"%d%b%Y")
           echo "Date is: $date"
-          echo "::set-output name=formatdate::$date"
+          #echo "::set-output name=formatdate::$date"
+          echo "formatdate=$date" >> env.GITHUB_OUTPUT
 
   TAKING_BACKUP:
     needs: SETVARS
