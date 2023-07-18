@@ -1,0 +1,27 @@
+name: Refresh_poc - AD
+env:
+  DBenv: 'STG'
+
+on:
+  workflow_dispatch
+
+jobs:
+  SETVARS:
+    outputs:
+      formatdate: ${{ steps.get-date.outputs.formatdate }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get present date
+        id: get-date
+        run: |
+          date=$(date +"%d%b%Y")
+          echo "Date is: $date"
+          echo "::set-output name=formatdate::$date"
+
+  TAKING_BACKUP:
+    needs: SETVARS
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Taking backup
+        run: |
+          echo "CO_date_is ${{ needs.SETVARS.outputs.formatdate }}"
