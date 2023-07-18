@@ -57,7 +57,7 @@ jobs:
           
           
   SETVARS2:
-    runs-on: self-hosted-unixhost1
+    runs-on: ubuntu-22.04
     steps:
       - name: Get present date
         id: get-date
@@ -70,7 +70,7 @@ jobs:
   TAKING_BACKUP2:
     needs:
       - SETVARS
-    runs-on: self-hosted-unixhost1
+    runs-on: ubuntu-22.04
     steps:   
       - name: Taking backup
         run: |
