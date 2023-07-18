@@ -64,7 +64,7 @@ jobs:
         run: |
           date=$(date +"%d%b%Y")
           echo "Date is: $date"
-          echo "formatdate=$date" >> $GITHUB_ENV
+          echo "formatdate=$date" >> $env.GITHUB_ENV
           #echo "::set-output name=formatdate::$date"
 
   TAKING_BACKUP2:
@@ -74,5 +74,5 @@ jobs:
     steps:   
       - name: Taking backup
         run: |
-          source $GITHUB_ENV
+          source $env.GITHUB_ENV
           echo "CO_date_is $formatdate"          
