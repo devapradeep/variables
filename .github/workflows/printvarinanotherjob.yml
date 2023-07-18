@@ -18,8 +18,8 @@ jobs:
         run: |
           date=$(date +"%d%b%Y")
           echo "Date is: $date"
-          #echo "::set-output name=formatdate::$date"
-          echo "formatdate=$date" >> env.GITHUB_OUTPUT
+          echo "::set-output name=formatdate::$date"
+#          echo "formatdate=$date" >> env.GITHUB_OUTPUT
 
   TAKING_BACKUP:
     needs: SETVARS
@@ -28,3 +28,29 @@ jobs:
       - name: Taking backup
         run: |
           echo "CO_date_is ${{ needs.SETVARS.outputs.formatdate }}"
+
+  SETVARS1:
+
+    runs-on: self-hosted-unixhost1
+
+    steps:
+
+      - name: Get present date
+        id: get-date
+        run: |
+          date=$(date +"%d%b%Y")
+          echo "Date is: $date"
+          echo "formatdate=$date" >> $GITHUB_ENV
+
+  TAKING_BACKUP1:
+
+    needs:
+      - SETVARS1
+
+    runs-on: self-hosted-unixhost1
+
+    steps:   
+
+      - name: Taking backup
+        run: |
+          echo "CO_date_is $formatdate"
