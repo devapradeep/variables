@@ -75,4 +75,5 @@ jobs:
       - name: Taking backup
         run: |
           source $env.GITHUB_ENV
-          echo "CO_date_is $formatdate"          
+          export formatdate=$formatdate
+          echo "CO_date_is $formatdate"
