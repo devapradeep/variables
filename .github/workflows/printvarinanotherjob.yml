@@ -77,3 +77,26 @@ jobs:
           source $GITHUB_ENV
           export formatdate=$formatdate
           echo "CO_date_is $formatdate"
+          
+          
+          name: Refresh_poc - AD
+
+  SETVARS3:
+    outputs:
+      formatdate: ${{ steps.get-date.outputs.formatdate }}
+    runs-on: ubuntu-latest # self-hosted-unixhost1
+    steps:
+      - name: Get present date
+        id: get-date
+        run: |
+          date=$(date +"%d%b%Y")
+          echo "Date is: $date"
+          echo "formatdate=$date" >> "$GITHUB_OUTPUT"
+
+  TAKING_BACKUP3:
+    needs: [SETVARS3]
+    runs-on: ubuntu-latest # self-hosted-unixhost1
+    steps:
+      - name: Taking backup
+        run: |
+          echo "Date is: ${{ needs.SETVARS.outputs.formatdate }}"
