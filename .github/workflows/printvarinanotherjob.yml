@@ -99,4 +99,4 @@ jobs:
     steps:
       - name: Taking backup
         run: |
-          echo "Date is: ${{ needs.SETVARS.outputs.formatdate }}"
+          echo "Date is: ${{ needs.SETVARS3.outputs.formatdate }}"
