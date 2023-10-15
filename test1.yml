@@ -1,0 +1,15 @@
+name: Download and Run PowerShell Script
+on: [push]
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run PowerShell script
+        run: |
+          # The PowerShell script file is located in the repository's root directory
+          # You can specify the relative path to your .ps1 file as needed
+          PowerShell.exe -File path/to/your-script.ps1
